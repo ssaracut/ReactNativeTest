@@ -4,4 +4,4 @@ First thing I noticed was that there was no TabLayout component as part of the d
 
 During this exercise I have found some other people have created a TabLayout component but it's either bundled with more components or it seems even more complicated that it needed to be.  I'll eventually look at pulling the component out or maybe contributing it back.
 
-![ReactNative TabLayout](samples/RNTabLayout.gif "ReactNative TabLayout") ![Xamarin TabLayout](samples/RNTabLayout.gif "Xamarin TabLayout")
+![ReactNative TabLayout](samples/RNTabLayout.gif "ReactNative TabLayout") ![Xamarin TabLayout](samples/XamarinTabLayout.gif "Xamarin TabLayout")
