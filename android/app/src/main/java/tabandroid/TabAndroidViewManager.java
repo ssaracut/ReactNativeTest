@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class TabAndroidViewManager extends ViewGroupManager<TabLayout> {
     private final static int COMMAND_SETUPWITHVIEWPAGER = 0;
-    public static final String REACT_CLASS = "tabandroid";
+    public static final String REACT_CLASS = "TabAndroid";
 
     @Override
     public String getName() {

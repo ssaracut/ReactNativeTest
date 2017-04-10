@@ -8,17 +8,20 @@ class AndroidTab extends React.Component {
 
   static propTypes = {
     ...View.propTypes, // include the default view properties
-    selectedTabIndicatorColor : ColorPropType,
+    selectedTabIndicatorColor: ColorPropType,
     tabTextColors: PropTypes.arrayOf(ColorPropType)
   }
 
   componentDidMount() {
-    let viewPagerId = findNodeHandle(this.refs['refViewPager']);
-    UIManager.dispatchViewManagerCommand(
-      findNodeHandle(this.refs['refTabAndroid']),
-      UIManager["TabAndroid"].Commands["setupWithViewPager"],
-      [viewPagerId, this.props.tabTitles]
-    );
+    const viewPagerId = findNodeHandle(this.refs['refViewPager']);
+    const tabLayoutId = findNodeHandle(this.refs['refTabAndroid']);
+    if (tabLayoutId && viewPagerId) {
+      UIManager.dispatchViewManagerCommand(
+        tabLayoutId,
+        UIManager["TabAndroid"].Commands["setupWithViewPager"],
+        [viewPagerId, this.props.tabTitles]
+      );
+    }
   }
 
   render() {

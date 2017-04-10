@@ -1,11 +1,25 @@
 import React, { Component } from 'react';
 import { Navigator } from 'react-native'
-import HomePage from './pages/Home'
+import {
+  StackNavigator,
+} from 'react-navigation';
 
-export default class ReactNativeTest extends Component {
+import HomePage from './pages/Home'
+import AddItemPage from './pages/AddItem'
+
+class ReactNativeTest extends Component {
   render() {
     return (
       <HomePage />
     );
   }
 }
+
+export default NavStack = StackNavigator({
+  Home: {
+    screen: HomePage,
+  },
+  AddItem: {
+    screen: AddItemPage
+  }
+})
