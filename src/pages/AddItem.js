@@ -16,8 +16,8 @@ import {
 import nativeImageSource from 'nativeImageSource';
 
 export default class AddItemPage extends Component {
-  actionSelected(actionIndex) {
-
+  actionSelected(actionIndex, navigation) {
+    navigation.goBack();
   }
 
   render() {
@@ -32,7 +32,7 @@ export default class AddItemPage extends Component {
           actions={[
             { title: 'Save', show: 'always' }
           ]}
-          onActionSelected={this.actionSelected}
+          onActionSelected={(actionIndex) => { this.actionSelected(actionIndex, this.props.navigation) }}
         />
         <View style={styles.form}>
           <Text style={styles.label}>Text</Text>
