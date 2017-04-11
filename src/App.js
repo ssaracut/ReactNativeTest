@@ -22,4 +22,7 @@ export default NavStack = StackNavigator({
   AddItem: {
     screen: AddItemPage
   }
-})
+},
+  {
+    headerMode: 'none'
+  })
