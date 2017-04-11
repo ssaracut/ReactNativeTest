@@ -5,3 +5,7 @@ First thing I noticed was that there was no TabLayout component as part of the d
 During this exercise I have found some other people have created TabLayout components but they either bundle with more components or they seem to be more complicated than they needed to be.  I'll eventually look at pulling the component out into my own 3rd party lib or maybe contributing it back to the main project one day.
 
 ![ReactNative TabLayout](samples/RNTabLayout.gif "ReactNative TabLayout") ![Xamarin TabLayout](samples/XamarinTabLayout.gif "Xamarin TabLayout")
+
+Decided to explore navigation next.  Grabbed the [react-navigation](https://reactnavigation.org/) library and started to wire it in.  Not sure what I think of it just yet. Titanium felt like they had the navigation nailed down really well when I was using it and not sure why react doesn't feel as good.
+
+![ReactNative AddItem](samples/RNAddItem.gif "ReactNative AddItem") ![Xamarin AddItem](samples/XamarinAddItem.gif "Xamarin AddItem")
