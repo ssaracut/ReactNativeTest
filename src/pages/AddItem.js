@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   },
   toolbar: {
     height: 56,
-    elevation: 10,
+    //elevation: 10,
     backgroundColor: '#2196F3',
   },
   form: {

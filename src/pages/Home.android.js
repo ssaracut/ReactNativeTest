@@ -5,6 +5,7 @@
  */
 
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import {
   StyleSheet,
   View,
@@ -26,7 +27,7 @@ const getActions = (actionIndex) => {
   return actions;
 }
 
-export default class HomePage extends Component {
+class HomePage extends Component {
   constructor(props) {
     super(props);
     this.state = { initialPage: 0, currentPage: 0 };
@@ -59,7 +60,7 @@ export default class HomePage extends Component {
             initialPage={0}
             onPageSelected={this.pageSelected.bind(this)}>
             <View style={styles.pageStyle}>
-              <Browse />
+              <Browse itemList={this.props.itemList} />
             </View>
             <View style={styles.pageStyle}>
               <About />
@@ -71,18 +72,27 @@ export default class HomePage extends Component {
   }
 }
 
+const mapStateToProps = function (state) {
+  return state.app;
+};
+const mapDispatchToProps = function (dispatch) {
+  return {};
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
   toolbar: {
     height: 56,
-    elevation: 10,
+    //elevation: 10,
     backgroundColor: '#2196F3',
   },
   tabbar: {
     height: 56,
-    elevation: 10,
+    //elevation: 10,
     //backgroundColor: '#228B22',
   },
   viewPager: {

@@ -1,28 +1,49 @@
 import React, { Component } from 'react';
 import { Navigator } from 'react-native'
-import {
-  StackNavigator,
-} from 'react-navigation';
+import { StackNavigator, addNavigationHelpers, NavigationActions } from 'react-navigation';
+import { Provider, connect } from 'react-redux'
+import { createStore, combineReducers } from 'redux'
+import AppReducer from './reducers/AppReducer'
 
 import HomePage from './pages/Home'
 import AddItemPage from './pages/AddItem'
 
-class ReactNativeTest extends Component {
+const AppNavigator = StackNavigator({
+  Home: { screen: HomePage },
+  AddItem: { screen: AddItemPage },
+}, { headerMode: 'none', initialRouteName: 'Home' })
+
+const navReducer = (state, action) => {
+  const newState = AppNavigator.router.getStateForAction(action, state);
+  return (newState ? newState : state)
+};
+
+const appReducer = combineReducers({
+  nav: navReducer,
+  app: AppReducer,
+});
+
+class AppWithNavigationState extends Component {
   render() {
     return (
-      <HomePage />
+      <AppNavigator navigation={addNavigationHelpers({
+        dispatch: this.props.dispatch,
+        state: this.props.nav,
+      })} />
+    );
+  }
+}
+const ConnectedAppWithNavigationState = connect(state => ({ nav: state.nav }))(AppWithNavigationState)
+
+const store = createStore(appReducer)
+export default class ReactNativeTest extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <ConnectedAppWithNavigationState />
+      </Provider>
     );
   }
 }
 
-export default NavStack = StackNavigator({
-  Home: {
-    screen: HomePage,
-  },
-  AddItem: {
-    screen: AddItemPage
-  }
-},
-  {
-    headerMode: 'none'
-  })
+
