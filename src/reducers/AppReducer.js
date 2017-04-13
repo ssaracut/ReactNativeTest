@@ -1,6 +1,5 @@
 
 const initialState = {
-  header: { title: 'ReactNativeTest', actions: [] },
   itemList: [
     { id: '1', text: "Buy some cat food", description: "The cats are hungry" },
     { id: '2', text: "Learn F#", description: "Seems like a functional idea" },
@@ -12,5 +11,16 @@ const initialState = {
 }
 
 export default AppReducer = (state = initialState, action) => {
-  return state;
+  switch (action.type) {
+    case 'SAVE_LIST_ITEM':
+      return {
+        ...state, itemList: [...state.itemList, {
+          id: state.itemList.length + 1,
+          text: action.text,
+          description: action.description
+        }]
+      }
+    default:
+      return state;
+  }
 }

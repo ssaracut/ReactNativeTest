@@ -5,6 +5,7 @@
  */
 
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import {
   StyleSheet,
@@ -15,50 +16,52 @@ import {
   Button
 } from 'react-native'
 
+import * as AppActionCreators from '../actions/AppActionCreators'
 import Browse from '../components/Browse/Browse'
 import About from '../components/About/About'
 import TabAndroid from '../components/TabAndroid/TabAndroid'
 
-const getActions = (actionIndex) => {
-  let actions = [];
-  if (actionIndex === 0) {
-    actions.push({ id: 'AddItem', title: 'Add Item', show: 'always' })
-  }
-  return actions;
-}
+const tabTitles = ['Browse', 'About'];
+const headerActions = [[{ id: 'AddItem', title: 'Add Item', show: 'always' }], []];
 
 class HomePage extends Component {
   constructor(props) {
-    super(props);
-    this.state = { initialPage: 0, currentPage: 0 };
+    super(props)
+    this.state = { currentTabIndex: 0 }
+    this.actionSelected = this.actionSelected.bind(this);
+    this.pageSelected = this.pageSelected.bind(this);
   }
 
-  actionSelected(action, navigation) {
+  actionSelected(actionIndex) {
+    const navigation = this.props.navigation;
+    const currentTabIndex = this.state.currentTabIndex;
+    const action = headerActions[currentTabIndex][actionIndex];
     navigation.navigate(action.id)
   }
 
   pageSelected(event) {
     const positionIndex = event.nativeEvent.position;
-    this.setState({ ...this.state, currentPage: positionIndex });
+    this.setState({ ...this.state, currentTabIndex: positionIndex })
   }
 
   render() {
-    const currentPage = this.state.currentPage;
+    const navigation = this.props.navigation;
+    const currentTabIndex = this.state.currentTabIndex;
     return (
       <View style={styles.container}>
         <ToolbarAndroid
           style={styles.toolbar}
-          title='ReactNativeTest'
+          title={tabTitles[currentTabIndex]}
           titleColor='white'
-          actions={getActions(currentPage)}
-          onActionSelected={(actionIndex) => { this.actionSelected(getActions(currentPage)[actionIndex], this.props.navigation) }}
+          actions={headerActions[currentTabIndex]}
+          onActionSelected={this.actionSelected}
         />
         <TabAndroid style={styles.tabbar}
-          tabTitles={['Browse', 'About']}>
+          tabTitles={tabTitles}>
           <ViewPagerAndroid
             style={styles.viewPager}
             initialPage={0}
-            onPageSelected={this.pageSelected.bind(this)}>
+            onPageSelected={this.pageSelected}>
             <View style={styles.pageStyle}>
               <Browse itemList={this.props.itemList} />
             </View>
@@ -76,7 +79,9 @@ const mapStateToProps = function (state) {
   return state.app;
 };
 const mapDispatchToProps = function (dispatch) {
-  return {};
+  return {
+    appActions: bindActionCreators(AppActionCreators, dispatch)
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

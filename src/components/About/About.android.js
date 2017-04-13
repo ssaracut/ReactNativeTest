@@ -12,30 +12,28 @@ import {
   Button
 } from 'react-native'
 
-export default class About extends Component {
-  render() {
-    const press = () => { }
-    return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
+export default About = (props) => {
+  const press = () => { }
+  return (
+    <View style={styles.container}>
+      <Text style={styles.welcome}>
+        Welcome to React Native!
         </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
+      <Text style={styles.instructions}>
+        To get started, edit index.android.js
         </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
+      <Text style={styles.instructions}>
+        Double tap R on your keyboard to reload,{'\n'}
+        Shake or press menu button for dev menu
         </Text>
-        <Button
-          style={styles.button}
-          title="Learn More"
-          accessibilityLabel="Learn more about this purple button"
-          onPress={press}
-        />
-      </View>
-    );
-  }
+      <Button
+        style={styles.button}
+        title="Learn More"
+        accessibilityLabel="Learn more about this purple button"
+        onPress={press}
+      />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

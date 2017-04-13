@@ -13,7 +13,6 @@ import {
   ToolbarAndroid
 } from 'react-native'
 
-const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
 const listViewRow = (rowData) => {
   return (
     <View style={styles.listItem}>
@@ -23,17 +22,16 @@ const listViewRow = (rowData) => {
   )
 }
 
-export default class Browse extends Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <ListView
-          dataSource={ds.cloneWithRows(this.props.itemList)}
-          renderRow={listViewRow}
-        />
-      </View>
-    );
-  }
+const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
+export default Browse = (props) => {
+  return (
+    <View style={styles.container}>
+      <ListView
+        dataSource={ds.cloneWithRows(props.itemList)}
+        renderRow={listViewRow}
+      />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
