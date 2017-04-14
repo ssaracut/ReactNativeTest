@@ -7,10 +7,12 @@ import AppReducer from './reducers/AppReducer'
 
 import HomePage from './pages/Home'
 import AddItemPage from './pages/AddItem'
+import ItemDetail from './pages/ItemDetail'
 
 const AppNavigator = StackNavigator({
   Home: { screen: HomePage },
   AddItem: { screen: AddItemPage },
+  ItemDetail: { screen: ItemDetail },
 }, { headerMode: 'none', initialRouteName: 'Home' })
 
 const navReducer = (state, action) => {

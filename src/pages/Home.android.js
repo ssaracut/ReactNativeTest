@@ -63,7 +63,7 @@ class HomePage extends Component {
             initialPage={0}
             onPageSelected={this.pageSelected}>
             <View style={styles.pageStyle}>
-              <Browse itemList={this.props.itemList} />
+              <Browse navigation={navigation} itemList={this.props.itemList} />
             </View>
             <View style={styles.pageStyle}>
               <About />
