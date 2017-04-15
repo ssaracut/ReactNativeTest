@@ -23,7 +23,7 @@ Just messing with setState and updating the action buttons when swiping the view
 
 ![ReactNative setState](samples/RNActionItemUpdate.gif "ReactNative setState") ![Xamarin setState](samples/XamarinActionItemUpdate.gif "Xamarin setState")
 
-The way React Native components are surfaced looks like it has been hard to conceptualize navigation in a good way.  Using [react-navigation](https://reactnavigation.org/) I have been able to do page changes but transition animations don't appear to be selectable and when you go into the detail view of a TabLayout there is no way of adding a fragment to the activity yet to do a "sub nav" within the TabLayout like Xamarin.  You'll notice when you click details on RN the whole page changes, where on Xamarin the page still contains the TabLayout and the new view is in the TabLayout's nav stack.
+The way React Native components are surfaced looks like it has been hard to conceptualize navigation in a good way.  Using [react-navigation](https://reactnavigation.org/) I have been able to do page changes but transition animations don't appear to be selectable, and when you go into the detail view of a TabLayout there is no way of adding a fragment to the activity yet to do a "sub nav" within the TabLayout like Xamarin.  You'll notice when you click details on RN the whole page changes, where on Xamarin the page still contains the TabLayout and the new view is in the TabLayout's nav stack.
 
 *Example of navigation between screens on both the React Native and Xamarin samples*
 

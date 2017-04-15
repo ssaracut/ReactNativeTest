@@ -57,6 +57,8 @@ const styles = StyleSheet.create({
     paddingRight: 16,
     paddingTop: 12,
     paddingBottom: 20,
+    borderColor: '#dbdbdb',
+    borderBottomWidth: 1
   },
   listItemText: {
     fontSize: 16,
