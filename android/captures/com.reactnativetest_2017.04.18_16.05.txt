@@ -1,0 +1,48 @@
+Applications Memory Usage (kB):
+Uptime: 26779746 Realtime: 26779746
+
+** MEMINFO in pid 30996 [com.reactnativetest] **
+                   Pss  Private  Private  Swapped     Heap     Heap     Heap
+                 Total    Dirty    Clean    Dirty     Size    Alloc     Free
+                ------   ------   ------   ------   ------   ------   ------
+  Native Heap    15238    15152        0        0    28160    25014     3145
+  Dalvik Heap     9555     9508        0        0    10950     8004     2946
+ Dalvik Other     1521     1520        0        0                           
+        Stack     1192     1192        0        0                           
+       Ashmem        2        0        0        0                           
+    Other dev        5        0        4        0                           
+     .so mmap     6148      292     4900        0                           
+    .apk mmap     2147       76      192        0                           
+    .ttf mmap      129        0       40        0                           
+    .dex mmap     5558     5156       40        0                           
+    .oat mmap     2545        0      456        0                           
+    .art mmap     2634     2208        4        0                           
+   Other mmap      100        8       12        0                           
+      Unknown    34905    34904        0        0                           
+        TOTAL    81679    70016     5648        0    39110    33018     6091
+ 
+ App Summary
+                       Pss(KB)
+                        ------
+           Java Heap:    11720
+         Native Heap:    15152
+                Code:    11152
+               Stack:     1192
+            Graphics:        0
+       Private Other:    36448
+              System:     6015
+ 
+               TOTAL:    81679      TOTAL SWAP (KB):        0
+ 
+ Objects
+               Views:      680         ViewRootImpl:        9
+         AppContexts:       11           Activities:       10
+              Assets:        3        AssetManagers:        2
+       Local Binders:       67        Proxy Binders:       41
+       Parcel memory:        7         Parcel count:       54
+    Death Recipients:        0      OpenSSL Sockets:        0
+ 
+ SQL
+         MEMORY_USED:        0
+  PAGECACHE_OVERFLOW:        0          MALLOC_SIZE:        0
+ 

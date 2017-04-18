@@ -11,6 +11,7 @@ import com.facebook.soloader.SoLoader;
 import java.util.Arrays;
 import java.util.List;
 
+import navigatorandroid.NavigatorAndroidPackage;
 import tabandroid.TabAndroidPackage;
 
 public class MainApplication extends Application implements ReactApplication {
@@ -25,7 +26,8 @@ public class MainApplication extends Application implements ReactApplication {
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
                     new MainReactPackage(),
-                    new TabAndroidPackage()
+                    new TabAndroidPackage(),
+                    new NavigatorAndroidPackage()
             );
         }
     };
