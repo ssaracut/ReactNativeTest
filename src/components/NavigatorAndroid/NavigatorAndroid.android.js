@@ -5,9 +5,9 @@ import { NativeModules, requireNativeComponent, View, Text, UIManager, findNodeH
 import createFragment from 'react-addons-create-fragment';
 import HomePage from '../../pages/Home'
 
-const Navigator = NativeModules.NavigatorAndroid;
+const Navigator = NativeModules.NavigatorAndroidModule;
 
-export default class AndroidNavigator extends React.Component {
+class AndroidNavigator extends React.Component {
 
   static propTypes = {
     ...View.propTypes, // include the default view properties
@@ -16,7 +16,6 @@ export default class AndroidNavigator extends React.Component {
   }
 
   constructor(props) {
-    debugger
     super(props);
     const routeKeys = Object.keys(this.props.routes);
     const initialScreen = this.props.routes[routeKeys[0]].screen;
@@ -35,7 +34,7 @@ export default class AndroidNavigator extends React.Component {
 
   navigate(screen, data) {
     this.setState({ ...this.state, navStack: [...this.state.navStack, this.props.routes[screen].screen] });
-    Navigator.navigate(1);
+    //Navigator.navigate(this.fragmentContainerId);
     // const navigatorAndroidId = findNodeHandle(this.refs['refNavigatorAndroid']);
     // UIManager.dispatchViewManagerCommand(
     //   navigatorAndroidId,
@@ -46,10 +45,23 @@ export default class AndroidNavigator extends React.Component {
 
   render() {
     const ScreenToRender = this.state.navStack[this.state.navStack.length - 1];
+    //const ScreenToRender = HomePage;
     return (
       <View style={{ flex: 1 }}>
-        <ScreenToRender navigation={{ navigate: this.navigate, goBack: this.goBack }} />
-      </View>
+        <NavigatorAndroid style={{ flex: 1 }}>
+          <ScreenToRender navigation={{ navigate: this.navigate, goBack: this.goBack }} />
+        </NavigatorAndroid>
+      </View >
     )
   }
+
 }
+
+var NavigatorAndroid = requireNativeComponent('NavigatorAndroid', AndroidNavigator, {
+  nativeOnly: {
+    nativeBackgroundAndroid: true,
+    nativeForegroundAndroid: true,
+  }
+});
+
+module.exports = AndroidNavigator;

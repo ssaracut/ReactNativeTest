@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import tabandroid.TabAndroidViewManager;
+
 /**
  * Created by Steven on 2017-04-17.
  */
@@ -19,7 +21,9 @@ public class NavigatorAndroidPackage implements ReactPackage {
     @Override
     public List<ViewManager> createViewManagers(
             ReactApplicationContext reactContext) {
-        return Collections.emptyList();
+        return Collections.<ViewManager>singletonList(
+                new NavigatorAndroidViewManager()
+        );
     }
 
     @Override

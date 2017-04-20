@@ -1,12 +1,12 @@
 package navigatorandroid;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,7 +35,7 @@ import java.util.Map;
 public class NavigatorAndroidModule extends ReactContextBaseJavaModule {
 
     private final static int COMMAND_NAVIGATE = 0;
-    public static final String REACT_CLASS = "NavigatorAndroid";
+    public static final String REACT_CLASS = "NavigatorAndroidModule";
     private ReadableMap routes = null;
 //    private String initalRoute = "";
 
@@ -59,11 +59,14 @@ public class NavigatorAndroidModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void navigate(final int nextScreen) {
+    public void navigate(final int fragmentContainerId) {
         /* I think what I want to do is create a function that says navigate, and accepts a view reference
         which then some how executes an intend to generate a new activity with which the view reference gets
         attached, and hopefully that achieves a navigation */
-        FragmentManager fm = getReactApplicationContext().getCurrentActivity().getFragmentManager();
+        FragmentManager fm = getCurrentActivity().getFragmentManager();
+        android.app.FragmentTransaction ft = fm.beginTransaction();
+        ft.add(fragmentContainerId, new Fragment());
+        ft.commit();
 
         /* lets assume nextScreen refers to a fragment id, and we some how transition
         between the current fragment and the new id.*/
@@ -72,9 +75,9 @@ public class NavigatorAndroidModule extends ReactContextBaseJavaModule {
         the least desirable since I'm not sure how we associate certain parts of a view hierarchy
         with certain activities.
          */
-        Activity currentActivity = getCurrentActivity();
-        final Intent testIntent = new Intent(getReactApplicationContext(),MainActivity.class);
-        currentActivity.startActivity(testIntent);
+//        Activity currentActivity = getCurrentActivity();
+//        final Intent testIntent = new Intent(getReactApplicationContext(),MainActivity.class);
+//        currentActivity.startActivity(testIntent);
     }
 
 }

@@ -41,13 +41,13 @@ const ConnectedAppWithNavigationState = connect(state => ({ nav: state.nav }))(A
 const store = createStore(appReducer)
 export default class ReactNativeTest extends Component {
   render() {
-    /*return (
+    return (
       <Provider store={store}>
         <ConnectedAppWithNavigationState />
       </Provider>
-    );*/
+    );
 
-    return (
+    /*return (
       <Provider store={store}>
         <NavigatorAndroid routes={{
           Home: { screen: HomePage },
@@ -55,7 +55,7 @@ export default class ReactNativeTest extends Component {
           ItemDetail: { screen: ItemDetail },
         }} />
       </Provider>
-    );
+    );*/
   }
 }
 
