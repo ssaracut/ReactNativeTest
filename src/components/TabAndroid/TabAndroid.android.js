@@ -18,7 +18,7 @@ class AndroidTab extends React.Component {
     if (tabLayoutId && viewPagerId) {
       UIManager.dispatchViewManagerCommand(
         tabLayoutId,
-        UIManager["TabAndroid"].Commands["setupWithViewPager"],
+        UIManager["saracut.TabAndroid"].Commands["setupWithViewPager"],
         [viewPagerId, this.props.tabTitles]
       );
     }
@@ -41,6 +41,6 @@ class AndroidTab extends React.Component {
   }
 }
 
-var TabAndroid = requireNativeComponent('TabAndroid', AndroidTab);
+var TabAndroid = requireNativeComponent('saracut.TabAndroid', AndroidTab);
 
 module.exports = AndroidTab;

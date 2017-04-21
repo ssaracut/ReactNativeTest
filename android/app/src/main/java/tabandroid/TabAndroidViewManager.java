@@ -22,7 +22,7 @@ import java.util.Map;
 
 public class TabAndroidViewManager extends ViewGroupManager<TabLayout> {
     private final static int COMMAND_SETUPWITHVIEWPAGER = 0;
-    public static final String REACT_CLASS = "TabAndroid";
+    public static final String REACT_CLASS = "saracut.TabAndroid";
 
     @Override
     public String getName() {

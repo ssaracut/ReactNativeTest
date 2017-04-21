@@ -23,6 +23,10 @@ const headerTitle = 'Add Item';
 const headerActions = [{ id: 'SaveItem', title: 'Save', show: 'always' }];
 
 export class AddItemPage extends Component {
+  static navigatorStyle = {
+    navBarHidden: true
+  };
+
   constructor(props) {
     super(props);
     this.state = { text: '', description: '' };
@@ -31,7 +35,7 @@ export class AddItemPage extends Component {
 
   actionSelected(actionIndex, navigation, appActions) {
     appActions.saveListItem(this.state.text, this.state.description);
-    navigation.goBack();
+    navigation.pop();
   }
 
   textChange(name, value) {
@@ -39,7 +43,7 @@ export class AddItemPage extends Component {
   }
 
   render() {
-    const navigation = this.props.navigation;
+    const navigation = this.props.navigator;
     const appActions = this.props.appActions;
     return (
       <View style={styles.container}>
@@ -48,7 +52,7 @@ export class AddItemPage extends Component {
           title={headerTitle}
           titleColor='white'
           navIcon={{ uri: 'ic_back_button' }}
-          onIconClicked={this.props.navigation.goBack}
+          onIconClicked={navigation.pop}
           actions={headerActions}
           onActionSelected={(actionIndex) => this.actionSelected(actionIndex, navigation, appActions)}
         />
@@ -70,7 +74,7 @@ export class AddItemPage extends Component {
 }
 
 const mapStateToProps = function (state) {
-  return state.app;
+  return state;
 };
 const mapDispatchToProps = function (dispatch) {
   return {

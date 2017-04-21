@@ -25,6 +25,11 @@ const tabTitles = ['Browse', 'About'];
 const headerActions = [[{ id: 'AddItem', title: 'Add Item', show: 'always' }], []];
 
 class HomePage extends Component {
+
+  static navigatorStyle = {
+    navBarHidden: true
+  };
+
   constructor(props) {
     super(props)
     this.state = { currentTabIndex: 0 }
@@ -33,10 +38,11 @@ class HomePage extends Component {
   }
 
   actionSelected(actionIndex) {
-    const navigation = this.props.navigation;
+    const navigation = this.props.navigator;
     const currentTabIndex = this.state.currentTabIndex;
     const action = headerActions[currentTabIndex][actionIndex];
-    navigation.navigate(action.id)
+    //navigation.navigate(action.id)
+    navigation.push({ screen: action.id })
   }
 
   pageSelected(event) {
@@ -45,7 +51,7 @@ class HomePage extends Component {
   }
 
   render() {
-    const navigation = this.props.navigation;
+    const navigation = this.props.navigator;
     const currentTabIndex = this.state.currentTabIndex;
     return (
       <View style={styles.container}>
@@ -76,7 +82,7 @@ class HomePage extends Component {
 }
 
 const mapStateToProps = function (state) {
-  return state.app;
+  return state;
 };
 const mapDispatchToProps = function (dispatch) {
   return {

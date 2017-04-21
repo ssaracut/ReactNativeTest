@@ -6,4 +6,4 @@
 import { AppRegistry } from 'react-native';
 import App from './src/App'
 
-AppRegistry.registerComponent('ReactNativeTest', () => App);
+//AppRegistry.registerComponent('ReactNativeTest', () => App);

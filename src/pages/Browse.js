@@ -5,6 +5,8 @@
  */
 
 import React, { Component } from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
 import {
   StyleSheet,
   Text,
@@ -13,15 +15,16 @@ import {
   ToolbarAndroid,
   TouchableHighlight
 } from 'react-native'
+import * as AppActionCreators from '../actions/AppActionCreators'
+import { Navigation } from 'react-native-navigation'
 
-
-const listViewRow = (navigation, rowData) => {
-  const rowTouched = (navigation, rowData) => {
+const listViewRow = (navigator, rowData) => {
+  const rowTouched = (navigator, rowData) => {
     //navigation.navigate('ItemDetail', rowData);
-    navigation.push({ screen: 'ItemDetail', passProps: { rowData } })
+    navigator.push({ screen: 'ItemDetail', passProps: { rowData } })
   }
   return (
-    <TouchableHighlight onPress={(event) => rowTouched(navigation, rowData)}>
+    <TouchableHighlight onPress={(event) => rowTouched(navigator, rowData)}>
       <View style={styles.listItem}>
         <Text style={styles.listItemText}>{rowData.text}</Text>
         <Text style={styles.listItemDescription}>{rowData.description}</Text>
@@ -31,17 +34,31 @@ const listViewRow = (navigation, rowData) => {
 }
 
 const ds = new ListView.DataSource({ rowHasChanged: (r1, r2) => r1 !== r2 });
-export default Browse = (props) => {
-  const { navigation, itemList } = props;
-  return (
-    <View style={styles.container}>
-      <ListView
-        dataSource={ds.cloneWithRows(itemList)}
-        renderRow={(rowData) => listViewRow(navigation, rowData)}
-      />
-    </View>
-  );
+
+class Browse extends Component {
+  render() {
+    const { navigator, itemList } = this.props;
+    return (
+      <View style={styles.container}>
+        <ListView
+          dataSource={ds.cloneWithRows(itemList)}
+          renderRow={(rowData) => listViewRow(navigator, rowData)}
+        />
+      </View>
+    );
+  }
 }
+
+const mapStateToProps = function (state) {
+  return state;
+};
+const mapDispatchToProps = function (dispatch) {
+  return {
+    appActions: bindActionCreators(AppActionCreators, dispatch)
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Browse);
 
 const styles = StyleSheet.create({
   container: {

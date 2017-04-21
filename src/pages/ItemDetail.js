@@ -20,10 +20,14 @@ import nativeImageSource from 'nativeImageSource';
 import * as AppActionCreators from '../actions/AppActionCreators'
 
 export class ItemDetailPage extends Component {
+
+  static navigatorStyle = {
+    navBarHidden: true
+  };
+
   render() {
-    const navigation = this.props.navigation;
-    const text = this.props.navigation.state.params.text;
-    const description = this.props.navigation.state.params.description;
+    const navigation = this.props.navigator;
+    const { text, description } = this.props.rowData;
 
     return (
       <View style={styles.container}>
@@ -32,7 +36,7 @@ export class ItemDetailPage extends Component {
           title={text}
           titleColor='white'
           navIcon={{ uri: 'ic_back_button' }}
-          onIconClicked={navigation.goBack}
+          onIconClicked={navigation.pop}
         />
         <View style={styles.form}>
           <Text style={styles.text}>{text}</Text>
@@ -44,7 +48,7 @@ export class ItemDetailPage extends Component {
 }
 
 const mapStateToProps = function (state) {
-  return state.app;
+  return state;
 };
 const mapDispatchToProps = function (dispatch) {
   return {
